@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSolve - Your Ultimate Academic Helper</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap');
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #1B263B 0%, #3AAFA9 100%);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial-slide {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .testimonial-slide.active {
+            opacity: 1;
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-indigo-900 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
+                <span class="text-xl font-bold">EduSolve</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Home</a>
+                <a href="ask.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Ask Question</a>
+                <a href="pricing.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Pricing</a>
+                <a href="about.html" class="hover:text-teal-300 font-medium transition-colors duration-200">About</a>
+                <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300">Sign In</button>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-btn">
+                <i data-feather="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-800 px-6 py-4">
+            <a href="index.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Home</a>
+            <a href="ask.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Ask Question</a>
+            <a href="pricing.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Pricing</a>
+            <a href="about.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-bg text-white">
+        <div class="container mx-auto px-6 py-20 md:py-32 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fadeIn">Master Every Question with AI-Powered Guidance</h1>
+            <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto">Instant Solutions for Maths, Science, Social Studies & Beyond</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="ask.html" class="bg-teal-500 hover:bg-yellow-400 text-white hover:text-gray-800 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">Get Started</a>
+                <button class="bg-transparent border-2 border-white hover:bg-white hover:text-indigo-900 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300">How It Works</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-indigo-900">How EduSolve Helps You Learn</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-xl transition-all duration-300">
+                    <div class="bg-teal-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i data-feather="zap" class="w-8 h-8 text-teal-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-indigo-900">Instant Answers</h3>
+                    <p class="text-gray-600 text-center">Get AI-generated step-by-step solutions in seconds with our cutting-edge technology.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-xl transition-all duration-300">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i data-feather="help-circle" class="w-8 h-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-indigo-900">Adaptive Hints</h3>
+                    <p class="text-gray-600 text-center">Stuck? Get progressive hints tailored to your current understanding level.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-gray-50 p-8 rounded-xl transition-all duration-300">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i data-feather="trending-up" class="w-8 h-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-indigo-900">Progress Tracker</h3>
+                    <p class="text-gray-600 text-center">Visual analytics show your improvement across subjects over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-indigo-900">What Students Say</h2>
+            
+            <div class="relative max-w-4xl mx-auto">
+                <div class="testimonial-slide active bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-teal-400 to-blue-500 flex items-center justify-center text-white font-bold text-xl mr-4">S</div>
+                        <div>
+                            <h4 class="font-bold text-indigo-900">Sarah J.</h4>
+                            <p class="text-gray-500">Grade 11 Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"EduSolve helped me understand calculus concepts that I'd been struggling with for months. The step-by-step explanations make all the difference!"</p>
+                </div>
+                
+                <div class="testimonial-slide bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center text-white font-bold text-xl mr-4">M</div>
+                        <div>
+                            <h4 class="font-bold text-indigo-900">Mike R.</h4>
+                            <p class="text-gray-500">Grade 10 Student</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The chemistry solutions are incredible! I went from failing to getting A's in just one semester. Thank you EduSolve!"</p>
+                </div>
+                
+                <div class="testimonial-slide bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center text-white font-bold text-xl mr-4">E</div>
+                        <div>
+                            <h4 class="font-bold text-indigo-900">Emma L.</h4>
+                            <p class="text-gray-500">College Freshman</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Perfect for quick homework help. The AI explanations are better than most textbooks I've used!"</p>
+                </div>
+                
+                <!-- Navigation arrows -->
+                <button class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 transition-colors" onclick="prevSlide()">
+                    <i data-feather="chevron-left" class="w-6 h-6 text-indigo-900"></i>
+                </button>
+                <button class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 transition-colors" onclick="nextSlide()">
+                    <i data-feather="chevron-right" class="w-6 h-6 text-indigo-900"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-indigo-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Solve Your Toughest Problems?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Join thousands of students who are learning faster and smarter with EduSolve.</p>
+            <a href="ask.html" class="bg-teal-500 hover:bg-yellow-400 text-white hover:text-gray-800 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">Try It Free</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
+                        <span class="text-xl font-bold">EduSolve</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">Your AI-powered academic assistant for all subjects.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-teal-300 transition-colors"><i data-feather="twitter"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-teal-300 transition-colors"><i data-feather="instagram"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-teal-300 transition-colors"><i data-feather="facebook"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-teal-300 transition-colors"><i data-feather="linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-teal-300 transition-colors">Home</a></li>
+                        <li><a href="ask.html" class="text-gray-300 hover:text-teal-300 transition-colors">Ask Question</a></li>
+                        <li><a href="pricing.html" class="text-gray-300 hover:text-teal-300 transition-colors">Pricing</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-teal-300 transition-colors">About</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Subjects</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Mathematics</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Science</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Social Studies</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Languages</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i data-feather="mail" class="w-4 h-4 mt-1 mr-2"></i>
+                            <span class="text-gray-300">help@edusolve.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="phone" class="w-4 h-4 mt-1 mr-2"></i>
+                            <span class="text-gray-300">+1 (555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p class="hover:text-gray-300 transition-colors cursor-pointer">© 2025 EduSolve. All rights reserved. Created by Suraj Kumar Gupta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Testimonial slider functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        // Auto-rotate testimonials
+        setInterval(() => {
+            nextSlide();
+        }, 5000);
+        
+        // Vanta.js background for hero section
+        if (typeof VANTA !== 'undefined') {
+            VANTA.GLOBE({
+                el: "#hero",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x3aa7a9,
+                backgroundColor: 0x1b263b,
+                size: 0.8
+            });
+        }
+    </script>
+</body>
+</html>
