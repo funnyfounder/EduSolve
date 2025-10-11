@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
   try {
     const hfRes = await fetch(
-      'https://api-inference.huggingface.co/models/microsoft/UserLM-8b',
+      'https://api-inference.huggingface.co/models/deepseek-ai/DeepSeek-V3.2-Exp',
       {
         method: 'POST',
         headers: {
