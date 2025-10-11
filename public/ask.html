@@ -386,37 +386,44 @@
             submitBtn.innerHTML = '<span class="flex items-center justify-center space-x-2"><i data-feather="loader" class="w-5 h-5 animate-spin"></i><span>Processing...</span></span>';
 
             try {
-                // Real API integration
-const payload = {
-  inputs: `Subject: ${subject}, Difficulty: ${difficulty}. Question: ${content}`
-};
-const apiRes = await fetch('/api/solve', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(payload)
-});
-if (!apiRes.ok) {
-  const errText = await apiRes.text();
-  throw new Error(errText || 'API error');
-}
-const text = await apiRes.text();
-spinner.classList.add('hidden');
-solutionText.textContent = text;
-solutionCard.classList.remove('hidden');
-// Scroll to result
-setTimeout(() => {
-  solutionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}, 300);
+                
+      // Real API integration
+      const payload = {
+        inputs: `Subject: ${subject}, Difficulty: ${difficulty}. Question: ${content}`
+      };
+      const apiRes = await fetch('/api/solve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!apiRes.ok) {
+        const errText = await apiRes.text();
+        throw new Error(errText || 'API error');
+      }
+      const text = await apiRes.text();
+      spinner.classList.add('hidden');
+      solutionText.textContent = text;
+      solutionCard.classList.remove('hidden');
+      setTimeout(() => {
+        solutionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
 
-            
+    } catch (error) {
+      console.error(error);
+      showError(error.message);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span class="flex items-center justify-center space-x-2"><i data-feather="send" class="w-5 h-5"></i><span>Solve My Question</span></span>';
+      feather.replace();
+    }
+  });
 
-        function showError(message) {
-            spinner.classList.add('hidden');
-            solutionText.textContent = message;
-            solutionText.className = 'text-red-600 leading-relaxed text-lg bg-red-50 p-6 rounded-lg border-l-4 border-red-500';
-            solutionCard.classList.remove('hidden');
-        }
-
+  function showError(message) {
+    spinner.classList.add('hidden');
+    solutionText.textContent = message;
+    solutionText.className = 'text-red-600 leading-relaxed text-lg bg-red-50 p-6 rounded-lg border-l-4 border-red-500';
+    solutionCard.classList.remove('hidden');
+  }
         // Steps toggle functionality
         stepsToggle.addEventListener('click', () => {
             const isHidden = stepsList.classList.contains('hidden');
