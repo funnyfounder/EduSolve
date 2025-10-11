@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Creator • EduSolve</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap');
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .profile-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .social-icon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-indigo-900 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
+                <span class="text-xl font-bold">EduSolve</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Home</a>
+                <a href="ask.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Ask Question</a>
+                <a href="pricing.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Pricing</a>
+                <a href="about.html" class="text-teal-300 font-medium">About</a>
+                <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300">Sign In</button>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-btn">
+                <i data-feather="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-800 px-6 py-4">
+            <a href="index.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Home</a>
+            <a href="ask.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Ask Question</a>
+            <a href="pricing.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Pricing</a>
+            <a href="about.html" class="block py-2 text-teal-300">About</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="bg-gradient-to-r from-indigo-900 to-teal-600 text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Meet the Creator</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto">Passionate about democratizing education through AI technology</p>
+        </div>
+    </section>
+
+    <!-- Creator Profile -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <!-- Profile Card -->
+                <div class="profile-card rounded-2xl p-8 md:p-12 text-white mb-16 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-black opacity-20"></div>
+                    <div class="relative z-10">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <div class="text-center lg:text-left">
+                                <!-- Profile Image Placeholder -->
+                                <div class="w-40 h-40 mx-auto lg:mx-0 mb-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center border-4 border-white border-opacity-30">
+                                    <div class="w-32 h-32 bg-gradient-to-br from-teal-400 to-blue-600 rounded-full flex items-center justify-center">
+                                        <span class="text-4xl font-bold text-white">SG</span>
+                                    </div>
+                                </div>
+                                
+                                <h2 class="text-3xl md:text-4xl font-bold mb-4">Suraj Kumar Gupta</h2>
+                                <p class="text-xl mb-6 opacity-90">Educational Technologist & AI Enthusiast</p>
+                                
+                                <!-- Social Links -->
+                                <div class="flex justify-center lg:justify-start space-x-6">
+                                    <a href="#" class="social-icon w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center transition-all duration-300">
+                                        <i data-feather="linkedin" class="w-6 h-6"></i>
+                                    </a>
+                                    <a href="#" class="social-icon w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center transition-all duration-300">
+                                        <i data-feather="twitter" class="w-6 h-6"></i>
+                                    </a>
+                                    <a href="#" class="social-icon w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center transition-all duration-300">
+                                        <i data-feather="mail" class="w-6 h-6"></i>
+                                    </a>
+                                    <a href="#" class="social-icon w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center transition-all duration-300">
+                                        <i data-feather="github" class="w-6 h-6"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-2xl font-bold mb-6">About Me</h3>
+                                <p class="text-lg leading-relaxed mb-6 opacity-90">
+                                    I'm a passionate educational technologist dedicated to empowering students worldwide through innovative AI solutions. With a background in computer science and education, I believe that every student deserves access to personalized, high-quality learning support.
+                                </p>
+                                <p class="text-lg leading-relaxed opacity-90">
+                                    EduSolve represents my vision of making complex academic concepts accessible to learners at every level, breaking down barriers to quality education through technology.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mission & Vision -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                    <!-- Mission -->
+                    <div class="mission-card bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="target" class="w-8 h-8 text-teal-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-indigo-900 mb-4">Our Mission</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            To democratize quality education by providing AI-powered academic support that adapts to each student's unique learning style and pace, making complex concepts accessible and engaging for learners worldwide.
+                        </p>
+                    </div>
+
+                    <!-- Vision -->
+                    <div class="mission-card bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
+                            <i data-feather="eye" class="w-8 h-8 text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-indigo-900 mb-4">Our Vision</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            A world where every student has access to personalized, intelligent tutoring that empowers them to reach their full academic potential, regardless of their background or circumstances.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Core Values -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <h3 class="text-3xl font-bold text-indigo-900 mb-8 text-center">Core Values</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-feather="users" class="w-8 h-8 text-green-600"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-indigo-900 mb-3">Accessibility</h4>
+                            <p class="text-gray-600">Making quality education accessible to students from all backgrounds and learning abilities.</p>
+                        </div>
+
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-feather="zap" class="w-8 h-8 text-purple-600"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-indigo-900 mb-3">Innovation</h4>
+                            <p class="text-gray-600">Continuously pushing the boundaries of educational technology to create better learning experiences.</p>
+                        </div>
+
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i data-feather="heart" class="w-8 h-8 text-orange-600"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-indigo-900 mb-3">Empowerment</h4>
+                            <p class="text-gray-600">Empowering students to take control of their learning journey and build confidence in their abilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h3 class="text-3xl md:text-4xl font-bold text-center mb-16 text-indigo-900">My Journey</h3>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-12">
+                    <!-- Timeline Item 1 -->
+                    <div class="flex items-start space-x-6">
+                        <div class="w-12 h-12 bg-teal-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold">1</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                            <h4 class="text-xl font-bold text-indigo-900 mb-2">Computer Science Education</h4>
+                            <p class="text-gray-600">Started my journey in computer science, fascinated by the potential of AI to solve real-world problems, particularly in education.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="flex items-start space-x-6">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold">2</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                            <h4 class="text-xl font-bold text-indigo-900 mb-2">Teaching Experience</h4>
+                            <p class="text-gray-600">Worked as a tutor and teaching assistant, witnessing firsthand the challenges students face and the need for personalized learning solutions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 3 -->
+                    <div class="flex items-start space-x-6">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold">3</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                            <h4 class="text-xl font-bold text-indigo-900 mb-2">AI Research & Development</h4>
+                            <p class="text-gray-600">Dove deep into AI and machine learning, focusing on natural language processing and educational applications.</p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 4 -->
+                    <div class="flex items-start space-x-6">
+                        <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-white font-bold">4</span>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md flex-1">
+                            <h4 class="text-xl font-bold text-indigo-900 mb-2">EduSolve Creation</h4>
+                            <p class="text-gray-600">Combined my passion for education and AI expertise to create EduSolve, bringing personalized learning assistance to students worldwide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-indigo-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Let's Connect</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">I'm always interested in connecting with fellow educators, students, and technology enthusiasts. Feel free to reach out!</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                <a href="mailto:suraj@edusolve.com" class="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2">
+                    <i data-feather="mail" class="w-5 h-5"></i>
+                    <span>Send Email</span>
+                </a>
+                <a href="https://linkedin.com/in/surajkumargupta" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2">
+                    <i data-feather="linkedin" class="w-5 h-5"></i>
+                    <span>LinkedIn</span>
+                </a>
+            </div>
+
+            <p class="text-gray-300">Currently based in India 🇮🇳 | Building the future of education</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-900 text-white py-12 border-t border-indigo-800">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
+                        <span class="text-xl font-bold">EduSolve</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">Your AI-powered academic assistant for all subjects.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-teal-300 transition-colors">Home</a></li>
+                        <li><a href="ask.html" class="text-gray-300 hover:text-teal-300 transition-colors">Ask Question</a></li>
+                        <li><a href="pricing.html" class="text-gray-300 hover:text-teal-300 transition-colors">Pricing</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-teal-300 transition-colors">About</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Subjects</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Mathematics</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Science</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Social Studies</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Languages</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i data-feather="mail" class="w-4 h-4 mt-1 mr-2"></i>
+                            <span class="text-gray-300">help@edusolve.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="phone" class="w-4 h-4 mt-1 mr-2"></i>
+                            <span class="text-gray-300">+1 (555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p class="hover:text-gray-300 transition-colors cursor-pointer">© 2025 EduSolve. All rights reserved. Created by Suraj Kumar Gupta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

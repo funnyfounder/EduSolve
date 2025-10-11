@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing • EduSolve</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap');
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .toggle-slider {
+            transition: transform 0.3s ease;
+        }
+        .toggle-slider.yearly {
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-indigo-900 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
+                <span class="text-xl font-bold">EduSolve</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Home</a>
+                <a href="ask.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Ask Question</a>
+                <a href="pricing.html" class="text-teal-300 font-medium">Pricing</a>
+                <a href="about.html" class="hover:text-teal-300 font-medium transition-colors duration-200">About</a>
+                <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300">Sign In</button>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-btn">
+                <i data-feather="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-800 px-6 py-4">
+            <a href="index.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Home</a>
+            <a href="ask.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Ask Question</a>
+            <a href="pricing.html" class="block py-2 text-teal-300">Pricing</a>
+            <a href="about.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">About</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <section class="bg-gradient-to-r from-indigo-900 to-teal-600 text-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Choose Your Learning Plan</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Unlock your academic potential with AI-powered solutions tailored to your needs</p>
+            
+            <!-- Billing Toggle -->
+            <div class="flex items-center justify-center space-x-4 mb-8">
+                <span id="monthly-label" class="text-lg font-medium">Monthly</span>
+                <div class="relative w-16 h-8 bg-white bg-opacity-20 rounded-full cursor-pointer" id="billing-toggle">
+                    <div class="toggle-slider absolute top-1 left-1 w-6 h-6 bg-white rounded-full transition-transform duration-300"></div>
+                </div>
+                <span id="yearly-label" class="text-lg font-medium text-gray-300">Yearly <span class="text-yellow-300 text-sm">(Save 20%)</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Cards -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Basic Plan -->
+                <div class="pricing-card bg-white rounded-2xl shadow-lg p-8 border border-gray-200 transition-all duration-300">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="book" class="w-8 h-8 text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-indigo-900 mb-2">Basic</h3>
+                        <p class="text-gray-600 mb-6">Perfect for occasional help</p>
+                        
+                        <div class="mb-8">
+                            <div class="flex items-baseline justify-center">
+                                <span class="text-4xl font-bold text-indigo-900" id="basic-price">$9.99</span>
+                                <span class="text-gray-500 ml-2">/month</span>
+                            </div>
+                            <div id="basic-yearly-savings" class="hidden text-green-600 text-sm mt-1">Save $24/year</div>
+                        </div>
+
+                        <ul class="space-y-4 mb-8 text-left">
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>10 questions per day</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Step-by-step solutions</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Email support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Basic subjects coverage</span>
+                            </li>
+                        </ul>
+
+                        <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg font-medium transition-all duration-300">
+                            Choose Basic
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pro Plan (Popular) -->
+                <div class="pricing-card bg-white rounded-2xl shadow-2xl p-8 border-2 border-teal-500 transition-all duration-300 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <div class="bg-teal-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                            Most Popular
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="star" class="w-8 h-8 text-teal-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-indigo-900 mb-2">Pro</h3>
+                        <p class="text-gray-600 mb-6">Best for regular learners</p>
+                        
+                        <div class="mb-8">
+                            <div class="flex items-baseline justify-center">
+                                <span class="text-4xl font-bold text-indigo-900" id="pro-price">$19.99</span>
+                                <span class="text-gray-500 ml-2">/month</span>
+                            </div>
+                            <div id="pro-yearly-savings" class="hidden text-green-600 text-sm mt-1">Save $48/year</div>
+                        </div>
+
+                        <ul class="space-y-4 mb-8 text-left">
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Unlimited questions</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Advanced step-by-step solutions</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Priority support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>All subjects coverage</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Progress tracking</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Adaptive hints system</span>
+                            </li>
+                        </ul>
+
+                        <button class="w-full bg-teal-500 hover:bg-teal-600 text-white py-3 px-6 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+                            Choose Pro
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Elite Plan -->
+                <div class="pricing-card bg-white rounded-2xl shadow-lg p-8 border border-gray-200 transition-all duration-300">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-feather="crown" class="w-8 h-8 text-purple-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-indigo-900 mb-2">Elite</h3>
+                        <p class="text-gray-600 mb-6">Ultimate learning experience</p>
+                        
+                        <div class="mb-8">
+                            <div class="flex items-baseline justify-center">
+                                <span class="text-4xl font-bold text-indigo-900" id="elite-price">$29.99</span>
+                                <span class="text-gray-500 ml-2">/month</span>
+                            </div>
+                            <div id="elite-yearly-savings" class="hidden text-green-600 text-sm mt-1">Save $72/year</div>
+                        </div>
+
+                        <ul class="space-y-4 mb-8 text-left">
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Everything in Pro</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Personalized tutoring sessions</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Live chat support</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Custom study plans</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Exam preparation tools</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i data-feather="check" class="w-5 h-5 text-green-500 mr-3"></i>
+                                <span>Priority feature access</span>
+                            </li>
+                        </ul>
+
+                        <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 px-6 rounded-lg font-medium transition-all duration-300">
+                            Choose Elite
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-indigo-900">Frequently Asked Questions</h2>
+            
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-indigo-900 mb-2">Can I switch plans anytime?</h3>
+                    <p class="text-gray-600">Yes! You can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-indigo-900 mb-2">Is there a free trial?</h3>
+                    <p class="text-gray-600">We offer a 7-day free trial for all new users. No credit card required to get started.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-indigo-900 mb-2">What subjects are covered?</h3>
+                    <p class="text-gray-600">EduSolve covers Mathematics, Physics, Chemistry, Biology, History, Geography, Languages, Computer Science, Economics, and Literature.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-6">
+                    <h3 class="text-lg font-semibold text-indigo-900 mb-2">How accurate are the AI solutions?</h3>
+                    <p class="text-gray-600">Our AI is trained on vast academic datasets and provides highly accurate solutions. However, we recommend using it as a learning aid alongside your studies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-indigo-900 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Learning?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Join thousands of students already using EduSolve to excel in their studies.</p>
+            <a href="ask.html" class="bg-teal-500 hover:bg-yellow-400 text-white hover:text-gray-800 px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">Start Your Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
+                        <span class="text-xl font-bold">EduSolve</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">Your AI-powered academic assistant for all subjects.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-teal-300 transition-colors">Home</a></li>
+                        <li><a href="ask.html" class="text-gray-300 hover:text-teal-300 transition-colors">Ask Question</a></li>
+                        <li><a href="pricing.html" class="text-gray-300 hover:text-teal-300 transition-colors">Pricing</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-teal-300 transition-colors">About</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Subjects</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Mathematics</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Science</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Social Studies</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Languages</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i data-feather="mail" class="w-4 h-4 mt-1 mr-2"></i>
+                            <span class="text-gray-300">help@edusolve.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="phone" class="w-4 h-4 mt-1 mr-2"></i>
+                            <span class="text-gray-300">+1 (555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p class="hover:text-gray-300 transition-colors cursor-pointer">© 2025 EduSolve. All rights reserved. Created by Suraj Kumar Gupta</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Billing toggle functionality
+        const billingToggle = document.getElementById('billing-toggle');
+        const toggleSlider = document.querySelector('.toggle-slider');
+        const monthlyLabel = document.getElementById('monthly-label');
+        const yearlyLabel = document.getElementById('yearly-label');
+        
+        const basicPrice = document.getElementById('basic-price');
+        const proPrice = document.getElementById('pro-price');
+        const elitePrice = document.getElementById('elite-price');
+        
+        const basicSavings = document.getElementById('basic-yearly-savings');
+        const proSavings = document.getElementById('pro-yearly-savings');
+        const eliteSavings = document.getElementById('elite-yearly-savings');
+        
+        let isYearly = false;
+        
+        const monthlyPrices = {
+            basic: 9.99,
+            pro: 19.99,
+            elite: 29.99
+        };
+        
+        const yearlyPrices = {
+            basic: 7.99,  // 20% off
+            pro: 15.99,   // 20% off
+            elite: 23.99  // 20% off
+        };
+        
+        billingToggle.addEventListener('click', () => {
+            isYearly = !isYearly;
+            toggleSlider.classList.toggle('yearly');
+            
+            if (isYearly) {
+                monthlyLabel.classList.add('text-gray-300');
+                monthlyLabel.classList.remove('text-white');
+                yearlyLabel.classList.add('text-white');
+                yearlyLabel.classList.remove('text-gray-300');
+                
+                basicPrice.textContent = `$${yearlyPrices.basic}`;
+                proPrice.textContent = `$${yearlyPrices.pro}`;
+                elitePrice.textContent = `$${yearlyPrices.elite}`;
+                
+                basicSavings.classList.remove('hidden');
+                proSavings.classList.remove('hidden');
+                eliteSavings.classList.remove('hidden');
+            } else {
+                monthlyLabel.classList.add('text-white');
+                monthlyLabel.classList.remove('text-gray-300');
+                yearlyLabel.classList.add('text-gray-300');
+                yearlyLabel.classList.remove('text-white');
+                
+                basicPrice.textContent = `$${monthlyPrices.basic}`;
+                proPrice.textContent = `$${monthlyPrices.pro}`;
+                elitePrice.textContent = `$${monthlyPrices.elite}`;
+                
+                basicSavings.classList.add('hidden');
+                proSavings.classList.add('hidden');
+                eliteSavings.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
