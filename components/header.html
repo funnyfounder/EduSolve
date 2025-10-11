@@ -1,0 +1,33 @@
+<!-- /components/header.html -->
+<nav class="bg-indigo-900 text-white shadow-lg">
+  <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <img src="/assets/logo.svg" alt="EduSolve Logo" class="w-8 h-8 text-teal-300">
+      <span class="text-xl font-bold">EduSolve</span>
+    </div>
+    <div id="nav-links" class="hidden md:flex items-center space-x-8">
+      <a href="/public/index.html" class="hover:text-teal-300 font-medium">Home</a>
+      <a href="/public/ask.html" class="hover:text-teal-300 font-medium">Ask Question</a>
+      <a href="/public/pricing.html" class="hover:text-teal-300 font-medium">Pricing</a>
+      <a href="/public/about.html" class="hover:text-teal-300 font-medium">About</a>
+      <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300">Sign In</button>
+    </div>
+    <button id="mobile-toggle" class="md:hidden focus:outline-none">
+      <i data-feather="menu" class="w-6 h-6"></i>
+    </button>
+  </div>
+  <div id="mobile-drawer" class="fixed top-0 left-0 w-64 h-full bg-indigo-900 transform -translate-x-full transition-transform duration-300 z-50">
+    <div class="p-6">
+      <button id="mobile-close" class="mb-8 focus:outline-none">
+        <i data-feather="x" class="w-6 h-6 text-white"></i>
+      </button>
+      <nav class="flex flex-col space-y-4">
+        <a href="/public/index.html" class="text-white hover:text-teal-300">Home</a>
+        <a href="/public/ask.html" class="text-white hover:text-teal-300">Ask Question</a>
+        <a href="/public/pricing.html" class="text-white hover:text-teal-300">Pricing</a>
+        <a href="/public/about.html" class="text-white hover:text-teal-300">About</a>
+        <button class="mt-4 bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg">Sign In</button>
+      </nav>
+    </div>
+  </div>
+</nav>
