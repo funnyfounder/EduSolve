@@ -386,80 +386,29 @@
             submitBtn.innerHTML = '<span class="flex items-center justify-center space-x-2"><i data-feather="loader" class="w-5 h-5 animate-spin"></i><span>Processing...</span></span>';
 
             try {
-                // Simulate API call for now - replace with actual API integration
-                await simulateAIResponse(content, subject, difficulty);
-            } catch (error) {
-                console.error('Error:', error);
-                showError('Something went wrong. Please try again.');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span class="flex items-center justify-center space-x-2"><i data-feather="send" class="w-5 h-5"></i><span>Solve My Question</span></span>';
-                feather.replace();
-            }
-        });
+                // Real API integration
+const payload = {
+  inputs: `Subject: ${subject}, Difficulty: ${difficulty}. Question: ${content}`
+};
+const apiRes = await fetch('/api/solve', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload)
+});
+if (!apiRes.ok) {
+  const errText = await apiRes.text();
+  throw new Error(errText || 'API error');
+}
+const text = await apiRes.text();
+spinner.classList.add('hidden');
+solutionText.textContent = text;
+solutionCard.classList.remove('hidden');
+// Scroll to result
+setTimeout(() => {
+  solutionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}, 300);
 
-        async function simulateAIResponse(content, subject, difficulty) {
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 2000));
             
-            const mockResponse = generateMockResponse(content, subject, difficulty);
-            
-            spinner.classList.add('hidden');
-            solutionText.textContent = mockResponse.solution;
-            
-            // Generate mock steps
-            const steps = mockResponse.steps;
-            stepsList.innerHTML = steps.map(step => 
-                `<li class="flex items-start space-x-3">
-                    <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold mt-0.5">${steps.indexOf(step) + 1}</div>
-                    <span class="text-gray-700">${step}</span>
-                </li>`
-            ).join('');
-            
-            solutionCard.classList.remove('hidden');
-            
-            // Scroll to result
-            setTimeout(() => {
-                solutionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 300);
-        }
-
-        function generateMockResponse(content, subject, difficulty) {
-            const responses = {
-                Mathematics: {
-                    solution: "To solve this mathematics problem, I'll break it down into manageable steps. First, I'll identify the key components and then apply the appropriate mathematical principles to reach the solution.",
-                    steps: [
-                        "Identify the given information and what needs to be found",
-                        "Choose the appropriate mathematical method or formula",
-                        "Set up the equation or expression",
-                        "Perform the calculations step by step",
-                        "Check the answer and interpret the result"
-                    ]
-                },
-                Physics: {
-                    solution: "This physics problem requires understanding the fundamental principles involved. Let me analyze the given information and apply the relevant physics laws to solve it systematically.",
-                    steps: [
-                        "Identify the physical quantities and their relationships",
-                        "Draw a diagram if applicable",
-                        "Apply the relevant physics principles or laws",
-                        "Substitute the known values",
-                        "Calculate and verify the result with proper units"
-                    ]
-                },
-                default: {
-                    solution: `For this ${subject} question at ${difficulty.toLowerCase()} level, I'll provide a comprehensive solution. The approach involves analyzing the question systematically and applying the relevant concepts to reach a clear answer.`,
-                    steps: [
-                        "Analyze the question and identify key concepts",
-                        "Gather relevant information and context",
-                        "Apply the appropriate methodology",
-                        "Work through the solution systematically",
-                        "Review and verify the final answer"
-                    ]
-                }
-            };
-
-            return responses[subject] || responses.default;
-        }
 
         function showError(message) {
             spinner.classList.add('hidden');
