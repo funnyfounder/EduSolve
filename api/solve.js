@@ -15,12 +15,12 @@ export default async function handler(req, res) {
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
   
   if (!GEMINI_API_KEY) {
-    return res.status(500).json({ error: 'GEMINI_API_KEY not configured' });
+    return res.status(500).json({ error: 'GEMINI_API_KEY not configured in environment variables' });
   }
 
   try {
-    // Use the correct Gemini API endpoint
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`;
+    // Use Gemini 2.5 Flash-Lite model endpoint
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
     
     const response = await fetch(apiUrl, {
       method: 'POST',
