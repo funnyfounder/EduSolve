@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
   try {
     const hfRes = await fetch(
-      'https://api-inference.huggingface.co/models/deepseek-ai/DeepSeek-V3.2-Exp',
+      'https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash-lite',
       {
         method: 'POST',
         headers: {
