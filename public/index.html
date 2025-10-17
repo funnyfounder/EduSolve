@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduSolve - Your Ultimate Academic Helper</title>
-    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="icon" href="/static/image-7.jpg" type="image/jpeg" sizes="32x32" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
@@ -43,11 +43,14 @@
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-indigo-900 text-white shadow-lg">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-4">
-                <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
-                <span class="text-xl font-bold">EduSolve</span>
-            </div>
+        <div class="flex items-center space-x-4">
+            <img
+                src="/static/image-7.jpg"
+                alt="EduSolve Logo"
+                class="h-8 md:h-10 w-auto"
+                />
+            <span class="text-xl font-bold hidden sm:inline-block">EduSolve</span>
+        </div>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="index.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Home</a>
                 <a href="ask.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Ask Question</a>
@@ -177,13 +180,15 @@
 
     <!-- Footer -->
     <footer class="bg-indigo-900 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
-                        <span class="text-xl font-bold">EduSolve</span>
-                    </div>
+<div class="flex items-center space-x-2 mb-4">
+  <img
+    src="/static/image-7.jpg"
+    alt="EduSolve Logo"
+    class="h-6 md:h-8 w-auto"
+  />
+  <span class="text-xl font-bold text-teal-300">EduSolve</span>
+</div>
+
                     <p class="text-gray-300 mb-4">Your AI-powered academic assistant for all subjects.</p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-300 hover:text-teal-300 transition-colors"><i data-feather="twitter"></i></a>
