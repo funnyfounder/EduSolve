@@ -11,28 +11,55 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Missing inputs field' });
   }
 
-  try {
-    const hfRes = await fetch(
-      'https://ai.google.dev/gemini-api/docs/models#gemini-2.5-flash-lite',
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.HF_TOKEN}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ inputs })
-      }
-    );
+  // Get your Gemini API key from environment variables
+  const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+  
+  if (!GEMINI_API_KEY) {
+    return res.status(500).json({ error: 'GEMINI_API_KEY not configured' });
+  }
 
-    if (!hfRes.ok) {
-      const error = await hfRes.text();
-      return res.status(hfRes.status).send(error);
+  try {
+    // Use the correct Gemini API endpoint
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`;
+    
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        contents: [{
+          parts: [{
+            text: inputs
+          }]
+        }]
+      })
+    });
+
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('Gemini API error:', error);
+      return res.status(response.status).json({ 
+        error: 'Gemini API request failed', 
+        details: error 
+      });
     }
 
-    const text = await hfRes.text();
-    res.status(200).send(text);
+    const data = await response.json();
+    
+    // Extract the generated text from the response
+    const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No response generated';
+    
+    res.status(200).json({ 
+      result: generatedText,
+      fullResponse: data 
+    });
+    
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Inference error' });
+    console.error('Error:', err);
+    res.status(500).json({ 
+      error: 'Inference error', 
+      message: err.message 
+    });
   }
 }
