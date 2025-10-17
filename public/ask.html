@@ -355,6 +355,9 @@
             difficultyText.textContent = difficultyLabels[e.target.value];
         });
 
+        // Global variable to store full solution text
+        let fullSolutionText = '';
+
         // Form submission
         const form = document.getElementById('question-form');
         const responseArea = document.getElementById('response-area');
@@ -384,69 +387,143 @@
             solutionCard.classList.add('hidden');
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="flex items-center justify-center space-x-2"><i data-feather="loader" class="w-5 h-5 animate-spin"></i><span>Processing...</span></span>';
+            feather.replace();
 
             try {
+                // Real API integration
+                const payload = {
+                    inputs: content,
+                    subject: subject,
+                    difficulty: difficulty
+                };
                 
-      // Real API integration
-      const payload = {
-        inputs: `Subject: ${subject}, Difficulty: ${difficulty}. Question: ${content}`
-      };
-      const apiRes = await fetch('/api/solve', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      if (!apiRes.ok) {
-        const errText = await apiRes.text();
-        throw new Error(errText || 'API error');
-      }
-      const text = await apiRes.text();
-      spinner.classList.add('hidden');
-      solutionText.textContent = text;
-      solutionCard.classList.remove('hidden');
-      setTimeout(() => {
-        solutionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 300);
+                const apiRes = await fetch('/api/solve', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!apiRes.ok) {
+                    const errText = await apiRes.text();
+                    throw new Error(errText || 'API error');
+                }
+                
+                // ✅ FIXED: Parse JSON response instead of reading as text
+                const data = await apiRes.json();
+                
+                // ✅ FIXED: Extract the clean answer from the response
+                const cleanAnswer = data.answer || data.result || 'No response received';
+                
+                // Store full solution for steps extraction
+                fullSolutionText = cleanAnswer;
+                
+                // Hide spinner and show solution
+                spinner.classList.add('hidden');
+                
+                // ✅ FIXED: Format the answer nicely before displaying
+                solutionText.innerHTML = formatAnswer(cleanAnswer);
+                solutionText.className = 'text-gray-700 leading-relaxed text-lg bg-gray-50 p-6 rounded-lg border-l-4 border-teal-500';
+                
+                solutionCard.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    solutionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
 
-    } catch (error) {
-      console.error(error);
-      showError(error.message);
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<span class="flex items-center justify-center space-x-2"><i data-feather="send" class="w-5 h-5"></i><span>Solve My Question</span></span>';
-      feather.replace();
-    }
-  });
+            } catch (error) {
+                console.error(error);
+                showError(error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span class="flex items-center justify-center space-x-2"><i data-feather="send" class="w-5 h-5"></i><span>Solve My Question</span></span>';
+                feather.replace();
+            }
+        });
 
-  function showError(message) {
-    spinner.classList.add('hidden');
-    solutionText.textContent = message;
-    solutionText.className = 'text-red-600 leading-relaxed text-lg bg-red-50 p-6 rounded-lg border-l-4 border-red-500';
-    solutionCard.classList.remove('hidden');
-  }
-        // Steps toggle functionality
+        // ✅ NEW: Format answer function
+        function formatAnswer(text) {
+            // Convert markdown-style formatting to HTML
+            let formatted = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold text
+                .replace(/\n\n/g, '</p><p>')  // Paragraphs
+                .replace(/\n/g, '<br>')  // Line breaks
+                .replace(/``````/gs, '<pre class="bg-gray-800 text-white p-4 rounded mt-2 overflow-x-auto"><code>$1</code></pre>');  // Code blocks
+            
+            return '<p>' + formatted + '</p>';
+        }
+
+        function showError(message) {
+            spinner.classList.add('hidden');
+            solutionText.innerHTML = '<p>' + message + '</p>';
+            solutionText.className = 'text-red-600 leading-relaxed text-lg bg-red-50 p-6 rounded-lg border-l-4 border-red-500';
+            solutionCard.classList.remove('hidden');
+        }
+
+        // ✅ FIXED: Steps toggle functionality
         stepsToggle.addEventListener('click', () => {
             const isHidden = stepsList.classList.contains('hidden');
-            stepsList.classList.toggle('hidden');
-            
-            const icon = stepsToggle.querySelector('i');
-            const text = stepsToggle.querySelector('span');
             
             if (isHidden) {
+                // Extract and display steps
+                const steps = extractSteps(fullSolutionText);
+                stepsList.innerHTML = steps;
+                stepsList.classList.remove('hidden');
+                
+                const icon = stepsToggle.querySelector('i');
+                const text = stepsToggle.querySelector('span');
                 text.textContent = 'Hide Detailed Steps';
                 icon.setAttribute('data-feather', 'eye-off');
             } else {
+                stepsList.classList.add('hidden');
+                
+                const icon = stepsToggle.querySelector('i');
+                const text = stepsToggle.querySelector('span');
                 text.textContent = 'Show Detailed Steps';
                 icon.setAttribute('data-feather', 'list');
             }
+            
             feather.replace();
         });
+
+        // ✅ NEW: Extract steps from solution text
+        function extractSteps(text) {
+            const lines = text.split('\n');
+            let stepsHTML = '';
+            let stepNumber = 0;
+            
+            for (let line of lines) {
+                const trimmedLine = line.trim();
+                
+                // Look for numbered steps or "Step" keyword
+                if (trimmedLine.match(/^Step\s+\d+/i) || trimmedLine.match(/^\d+\./)) {
+                    stepNumber++;
+                    const cleanLine = trimmedLine.replace(/^(Step\s+\d+[:\-\.]?\s*|\d+\.\s*)/i, '');
+                    stepsHTML += `<li class="flex items-start space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-sm">${stepNumber}</span>
+                        <span class="text-gray-700 pt-1">${cleanLine}</span>
+                    </li>`;
+                } else if (trimmedLine && stepNumber > 0 && !trimmedLine.match(/^(answer|solution|final)/i)) {
+                    // Add continuation of previous step
+                    stepsHTML += `<li class="flex items-start space-x-3 ml-11">
+                        <span class="text-gray-600 text-sm">${trimmedLine}</span>
+                    </li>`;
+                }
+            }
+            
+            if (stepsHTML === '') {
+                return '<p class="text-gray-600 italic">No detailed steps found. The AI provided a direct answer.</p>';
+            }
+            
+            return '<ol class="space-y-4">' + stepsHTML + '</ol>';
+        }
 
         // Ask another question
         document.getElementById('ask-another').addEventListener('click', () => {
             form.reset();
             responseArea.classList.add('hidden');
+            stepsList.classList.add('hidden');
             difficultyText.textContent = 'Medium';
+            fullSolutionText = '';
             document.getElementById('content').focus();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
