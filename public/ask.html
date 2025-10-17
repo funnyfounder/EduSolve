@@ -1,373 +1,537 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ask a Question • EduSolve</title>
-  <link rel="icon" type="image/x-icon" href="/static/favicon.ico"/>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&family=Source+Code+Pro:wght@400&display=swap');
-    body { font-family: 'Open Sans', sans-serif; }
-    h1,h2,h3,h4 { font-family: 'Montserrat', sans-serif; }
-    .code-font { font-family: 'Source Code Pro', monospace; }
-    .animate-pulse { animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
-    @keyframes pulse { 0%,100%{opacity:1;}50%{opacity:.5;} }
-    .animate-spin { animation: spin 1s linear infinite; }
-    @keyframes spin { from{transform:rotate(0deg);}to{transform:rotate(360deg);} }
-    .slide-up { animation: slideUp 0.6s ease-out forwards; transform: translateY(20px); opacity: 0; }
-    @keyframes slideUp { to{ transform: translateY(0); opacity:1; } }
-    .difficulty-slider::-webkit-slider-thumb { appearance:none; width:20px; height:20px; border-radius:50%; background:#3AAFA9; cursor:pointer; }
-    .difficulty-slider::-moz-range-thumb { width:20px; height:20px; border-radius:50%; background:#3AAFA9; cursor:pointer; border:none; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask a Question • EduSolve</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&family=Source+Code+Pro:wght@400&display=swap');
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .code-font {
+            font-family: 'Source Code Pro', monospace;
+        }
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .slide-up {
+            animation: slideUp 0.6s ease-out forwards;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .difficulty-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3AAFA9;
+            cursor: pointer;
+        }
+        .difficulty-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3AAFA9;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
-  <!-- Navigation -->
-  <nav class="bg-indigo-900 text-white shadow-lg">
-    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-4">
-        <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
-        <span class="text-xl font-bold">EduSolve</span>
-      </div>
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="index.html" class="hover:text-teal-300 font-medium">Home</a>
-        <a href="ask.html" class="text-teal-300 font-medium">Ask Question</a>
-        <a href="pricing.html" class="hover:text-teal-300 font-medium">Pricing</a>
-        <a href="about.html" class="hover:text-teal-300 font-medium">About</a>
-        <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg font-medium">Sign In</button>
-      </div>
-      <button class="md:hidden focus:outline-none" id="mobile-menu-btn">
-        <i data-feather="menu" class="w-6 h-6"></i>
-      </button>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-indigo-800 px-6 py-4">
-      <a href="index.html" class="block py-2 hover:text-teal-300">Home</a>
-      <a href="ask.html" class="block py-2 text-teal-300">Ask Question</a>
-      <a href="pricing.html" class="block py-2 hover:text-teal-300">Pricing</a>
-      <a href="about.html" class="block py-2 hover:text-teal-300">About</a>
-    </div>
-  </nav>
-
-  <!-- Main Content -->
-  <section class="container mx-auto px-6 py-12">
-    <nav class="text-gray-600 mb-6 flex items-center space-x-2">
-      <a href="index.html" class="hover:text-teal-600">Home</a>
-      <i data-feather="chevron-right" class="w-4 h-4"></i>
-      <span class="text-indigo-900 font-medium">Ask Question</span>
+    <!-- Navigation -->
+    <nav class="bg-indigo-900 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
+                <span class="text-xl font-bold">EduSolve</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Home</a>
+                <a href="ask.html" class="text-teal-300 font-medium">Ask Question</a>
+                <a href="pricing.html" class="hover:text-teal-300 font-medium transition-colors duration-200">Pricing</a>
+                <a href="about.html" class="hover:text-teal-300 font-medium transition-colors duration-200">About</a>
+                <button class="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300">Sign In</button>
+            </div>
+            <button class="md:hidden focus:outline-none" id="mobile-menu-btn">
+                <i data-feather="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-800 px-6 py-4">
+            <a href="index.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Home</a>
+            <a href="ask.html" class="block py-2 text-teal-300">Ask Question</a>
+            <a href="pricing.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">Pricing</a>
+            <a href="about.html" class="block py-2 hover:text-teal-300 transition-colors duration-200">About</a>
+        </div>
     </nav>
 
-    <div class="text-center mb-12">
-      <h1 class="text-3xl md:text-4xl font-bold text-indigo-900 mb-4">
-        Ask Any Question, Get Instant AI Solutions
-      </h1>
-      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-        Submit your academic questions and receive detailed, step-by-step solutions powered by advanced AI technology.
-      </p>
-    </div>
+    <!-- Main Content -->
+    <section class="container mx-auto px-6 py-12">
+        <!-- Breadcrumb -->
+        <nav class="text-gray-600 mb-6 flex items-center space-x-2">
+            <a href="index.html" class="hover:text-teal-600 transition-colors">Home</a>
+            <i data-feather="chevron-right" class="w-4 h-4"></i>
+            <span class="text-indigo-900 font-medium">Ask Question</span>
+        </nav>
 
-    <div class="max-w-4xl mx-auto">
-      <form id="question-form" class="space-y-8 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-        <div>
-          <label for="content" class="block text-gray-700 font-semibold mb-3 text-lg">
-            Your Question
-          </label>
-          <textarea id="content" name="content" rows="6"
-            class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 resize-none"
-            placeholder="Type your question here... Be as specific as possible for better results." required>
-          </textarea>
-          <div class="mt-4 flex items-center space-x-6 text-gray-500">
-            <div class="flex items-center space-x-2">
-              <i data-feather="type" class="w-5 h-5"></i><span class="text-sm">Text</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <i data-feather="image" class="w-5 h-5"></i><span class="text-sm">Image (Coming Soon)</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <i data-feather="code" class="w-5 h-5 code-font"></i><span class="text-sm">LaTeX (Coming Soon)</span>
-            </div>
-          </div>
+        <!-- Page Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-indigo-900 mb-4">Ask Any Question, Get Instant AI Solutions</h1>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">Submit your academic questions and receive detailed, step-by-step solutions powered by advanced AI technology.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <label for="subject" class="block text-gray-700 font-semibold mb-3 text-lg">
-              Subject
-            </label>
-            <div class="relative">
-              <select id="subject" name="subject"
-                class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 bg-white"
-                required>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Physics">Physics</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="Biology">Biology</option>
-                <option value="History">History</option>
-                <option value="Geography">Geography</option>
-                <option value="Languages">Languages</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Economics">Economics</option>
-                <option value="Literature">Literature</option>
-              </select>
-              <i data-feather="chevron-down"
-                class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"></i>
+        <!-- Question Form -->
+        <div class="max-w-4xl mx-auto">
+            <form id="question-form" class="space-y-8 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                <!-- Question Input -->
+                <div>
+                    <label for="content" class="block text-gray-700 font-semibold mb-3 text-lg">Your Question</label>
+                    <textarea 
+                        id="content" 
+                        name="content" 
+                        rows="6" 
+                        class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 resize-none"
+                        placeholder="Type your question here... Be as specific as possible for better results."
+                        required
+                    ></textarea>
+                    
+                    <!-- Toolbar -->
+                    <div class="mt-4 flex items-center space-x-6 text-gray-500">
+                        <div class="flex items-center space-x-2">
+                            <i data-feather="type" class="w-5 h-5"></i>
+                            <span class="text-sm">Text</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-feather="image" class="w-5 h-5"></i>
+                            <span class="text-sm">Image (Coming Soon)</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i data-feather="code" class="w-5 h-5 code-font"></i>
+                            <span class="text-sm">LaTeX (Coming Soon)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subject and Difficulty -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Subject Selection -->
+                    <div>
+                        <label for="subject" class="block text-gray-700 font-semibold mb-3 text-lg">Subject</label>
+                        <div class="relative">
+                            <select 
+                                id="subject" 
+                                name="subject" 
+                                class="w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 appearance-none bg-white"
+                                required
+                            >
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Biology">Biology</option>
+                                <option value="History">History</option>
+                                <option value="Geography">Geography</option>
+                                <option value="Languages">Languages</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Economics">Economics</option>
+                                <option value="Literature">Literature</option>
+                            </select>
+                            <i data-feather="chevron-down" class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"></i>
+                        </div>
+                    </div>
+
+                    <!-- Difficulty Level -->
+                    <div>
+                        <label for="difficulty" class="block text-gray-700 font-semibold mb-3 text-lg">Difficulty Level</label>
+                        <div class="space-y-3">
+                            <input 
+                                id="difficulty" 
+                                name="difficulty" 
+                                type="range" 
+                                min="1" 
+                                max="3" 
+                                value="2"
+                                class="w-full difficulty-slider"
+                            >
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span class="flex items-center space-x-1">
+                                    <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                                    <span>Easy</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <div class="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                                    <span>Medium</span>
+                                </span>
+                                <span class="flex items-center space-x-1">
+                                    <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                                    <span>Hard</span>
+                                </span>
+                            </div>
+                            <p id="difficulty-text" class="text-center text-gray-600 font-medium">Medium</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button 
+                        type="submit" 
+                        class="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                        id="submit-btn"
+                    >
+                        <span class="flex items-center justify-center space-x-2">
+                            <i data-feather="send" class="w-5 h-5"></i>
+                            <span>Solve My Question</span>
+                        </span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Response Area -->
+            <div id="response-area" class="hidden mt-12">
+                <!-- Loading Spinner -->
+                <div id="spinner" class="text-center py-12">
+                    <div class="inline-flex items-center space-x-3">
+                        <i data-feather="loader" class="animate-spin w-8 h-8 text-teal-500"></i>
+                        <span class="text-lg text-gray-600">Processing your question...</span>
+                    </div>
+                    <p class="text-gray-500 mt-2">This may take a few seconds</p>
+                </div>
+
+                <!-- Solution Card -->
+                <div id="solution-card" class="hidden bg-white p-8 rounded-xl shadow-lg border border-gray-100 slide-up">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
+                            <i data-feather="check-circle" class="w-6 h-6 text-teal-600"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-indigo-900">AI Solution</h2>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div id="solution-text" class="text-gray-700 leading-relaxed text-lg bg-gray-50 p-6 rounded-lg border-l-4 border-teal-500"></div>
+                        
+                        <div class="flex items-center justify-between">
+                            <button 
+                                id="toggle-steps" 
+                                class="text-teal-600 hover:text-teal-700 font-semibold flex items-center space-x-2 transition-colors"
+                            >
+                                <i data-feather="list" class="w-5 h-5"></i>
+                                <span>Show Detailed Steps</span>
+                            </button>
+                            
+                            <button 
+                                id="hint-btn" 
+                                class="bg-indigo-900 hover:bg-indigo-800 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2"
+                            >
+                                <i data-feather="help-circle" class="w-5 h-5"></i>
+                                <span>Need More Help?</span>
+                            </button>
+                        </div>
+
+                        <ul id="steps-list" class="hidden space-y-3 bg-blue-50 p-6 rounded-lg"></ul>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
+                            <button 
+                                id="ask-another"
+                                class="flex-1 bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2"
+                            >
+                                <i data-feather="plus" class="w-5 h-5"></i>
+                                <span>Ask Another Question</span>
+                            </button>
+                            
+                            <button 
+                                class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2"
+                            >
+                                <i data-feather="share" class="w-5 h-5"></i>
+                                <span>Share Solution</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div>
-            <label for="difficulty" class="block text-gray-700 font-semibold mb-3 text-lg">
-              Difficulty Level
-            </label>
-            <div class="space-y-3">
-              <input id="difficulty" name="difficulty" type="range" min="1" max="3" value="2"
-                class="w-full difficulty-slider" />
-              <div class="flex justify-between text-sm text-gray-600">
-                <span class="flex items-center space-x-1">
-                  <div class="w-3 h-3 bg-green-400 rounded-full"></div><span>Easy</span>
-                </span>
-                <span class="flex items-center space-x-1">
-                  <div class="w-3 h-3 bg-yellow-400 rounded-full"></div><span>Medium</span>
-                </span>
-                <span class="flex items-center space-x-1">
-                  <div class="w-3 h-3 bg-red-400 rounded-full"></div><span>Hard</span>
-                </span>
-              </div>
-              <p id="difficulty-text" class="text-center text-gray-600 font-medium">
-                Medium
-              </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-indigo-900 text-white py-12 mt-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
+                        <span class="text-xl font-bold">EduSolve</span>
+                    </div>
+                    <p class="text-gray-300 mb-4">Your AI-powered academic assistant for all subjects.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-teal-300 transition-colors">Home</a></li>
+                        <li><a href="ask.html" class="text-gray-300 hover:text-teal-300 transition-colors">Ask Question</a></li>
+                        <li><a href="pricing.html" class="text-gray-300 hover:text-teal-300 transition-colors">Pricing</a></li>
+                        <li><a href="about.html" class="text-gray-300 hover:text-teal-300 transition-colors">About</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Subjects</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Mathematics</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Science</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Social Studies</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-teal-300 transition-colors">Languages</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i data-feather="mail" class="w-4 h-4 mt-1 mr-2"></i>
+                            <span class="text-gray-300">help@edusolve.com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="phone" class="w-4 h-4 mt-1 mr-2"></i>
+                            <span class="text-gray-300">+1 (555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
-        </div>
-
-        <div class="text-center">
-          <button id="submit-btn" type="submit"
-            class="bg-teal-500 hover:bg-teal-600 text-white px-8 py-4 rounded-lg font-bold text-lg shadow-lg transform hover:scale-105 transition-all duration-300">
-            <span class="flex items-center space-x-2">
-              <i data-feather="send" class="w-5 h-5"></i><span>Solve My Question</span>
-            </span>
-          </button>
-        </div>
-      </form>
-
-      <div id="response-area" class="hidden mt-12">
-        <div id="spinner" class="text-center py-12">
-          <div class="inline-flex items-center space-x-3">
-            <i data-feather="loader" class="w-8 h-8 animate-spin text-teal-500"></i>
-            <span class="text-lg text-gray-600">Processing your question...</span>
-          </div>
-          <p class="text-gray-500 mt-2">This may take a few seconds</p>
-        </div>
-
-        <div id="solution-card"
-          class="hidden bg-white p-8 rounded-xl shadow-lg border border-gray-100 slide-up">
-          <div class="flex items-center space-x-3 mb-6">
-            <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-              <i data-feather="check-circle" class="w-6 h-6 text-teal-600"></i>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
+                <p class="hover:text-gray-300 transition-colors cursor-pointer">© 2025 EduSolve. All rights reserved. Created by Suraj Kumar Gupta</p>
             </div>
-            <h2 class="text-2xl font-bold text-indigo-900">AI Solution</h2>
-          </div>
-          <div class="space-y-6">
-            <div id="solution-text"
-              class="text-gray-700 leading-relaxed text-lg bg-gray-50 p-6 rounded-lg border-l-4 border-teal-500">
-            </div>
-            <div class="flex items-center justify-between">
-              <button id="toggle-steps"
-                class="text-teal-600 hover:text-teal-700 font-semibold flex items-center space-x-2">
-                <i data-feather="list" class="w-5 h-5"></i><span>Show Detailed Steps</span>
-              </button>
-              <button id="hint-btn"
-                class="bg-indigo-900 hover:bg-indigo-800 text-white px-6 py-3 rounded-lg font-medium">
-                <i data-feather="help-circle" class="w-5 h-5"></i><span>Need More Help?</span>
-              </button>
-            </div>
-
-            <ul id="steps-list"
-              class="hidden space-y-3 bg-blue-50 p-6 rounded-lg">
-            </ul>
-
-            <div class="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-200">
-              <button id="ask-another"
-                class="flex-1 bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg font-medium">
-                <i data-feather="plus" class="w-5 h-5"></i><span>Ask Another Question</span>
-              </button>
-              <button
-                class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-lg font-medium">
-                <i data-feather="share" class="w-5 h-5"></i><span>Share Solution</span>
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <footer class="bg-indigo-900 text-white py-12 mt-20">
-    <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <div class="flex items-center space-x-2 mb-4">
-            <i data-feather="book-open" class="w-8 h-8 text-teal-300"></i>
-            <span class="text-xl font-bold">EduSolve</span>
-          </div>
-          <p class="text-gray-300 mb-4">Your AI-powered academic assistant for all subjects.</p>
-        </div>
-        <div>
-          <h4 class="font-bold mb-4">Quick Links</h4>
-          <ul class="space-y-2">
-            <li><a href="index.html" class="hover:text-teal-300 text-gray-300">Home</a></li>
-            <li><a href="ask.html" class="hover:text-teal-300 text-gray-300">Ask Question</a></li>
-            <li><a href="pricing.html" class="hover:text-teal-300 text-gray-300">Pricing</a></li>
-            <li><a href="about.html" class="hover:text-teal-300 text-gray-300">About</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-bold mb-4">Subjects</h4>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-teal-300 text-gray-300">Mathematics</a></li>
-            <li><a href="#" class="hover:text-teal-300 text-gray-300">Science</a></li>
-            <li><a href="#" class="hover:text-teal-300 text-gray-300">Social Studies</a></li>
-            <li><a href="#" class="hover:text-teal-300 text-gray-300">Languages</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="font-bold mb-4">Contact</h4>
-          <ul class="space-y-2">
-            <li class="flex items-start"><i data-feather="mail" class="w-4 h-4 mt-1 mr-2"></i><span>help@edusolve.com</span></li>
-            <li class="flex items-start"><i data-feather="phone" class="w-4 h-4 mt-1 mr-2"></i><span>+1 (555) 123-4567</span></li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-        <p class="hover:text-gray-300 cursor-pointer">© 2025 EduSolve. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    feather.replace();
-
-    // Mobile menu toggle
-    document.getElementById('mobile-menu-btn')
-      .addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
-
-    // Difficulty slider
-    const difficultyLabels = {1:'Easy',2:'Medium',3:'Hard'};
-    const slider = document.getElementById('difficulty');
-    const diffText = document.getElementById('difficulty-text');
-    slider.addEventListener('input', e => diffText.textContent = difficultyLabels[e.target.value]);
-
-    // State
-    let fullSolutionText = '';
-
-    // Elements
-    const form = document.getElementById('question-form');
-    const responseArea = document.getElementById('response-area');
-    const spinner = document.getElementById('spinner');
-    const solutionCard = document.getElementById('solution-card');
-    const solutionText = document.getElementById('solution-text');
-    const stepsToggle = document.getElementById('toggle-steps');
-    const stepsList = document.getElementById('steps-list');
-    const submitBtn = document.getElementById('submit-btn');
-
-    form.addEventListener('submit', async e => {
-      e.preventDefault();
-      const fd = new FormData(form);
-      const content = fd.get('content').trim();
-      const subject = fd.get('subject');
-      const difficulty = difficultyLabels[fd.get('difficulty')];
-      if (!content) return alert('Please enter your question.');
-
-      // Show loading
-      responseArea.classList.remove('hidden');
-      spinner.classList.remove('hidden');
-      solutionCard.classList.add('hidden');
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<span class="flex items-center space-x-2"><i data-feather="loader" class="w-5 h-5 animate-spin"></i><span>Processing...</span></span>';
-      feather.replace();
-
-      try {
-        const payload = { inputs: content, subject, difficulty };
-        const apiRes = await fetch('/api/solve',{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
-        if (!apiRes.ok) {
-          const err = await apiRes.text();
-          throw new Error(err || 'API error');
-        }
-        const data = await apiRes.json();
-        const cleanAnswer = data.answer || data.result || '';
-        fullSolutionText = cleanAnswer;
-
-        spinner.classList.add('hidden');
-        solutionText.innerHTML = formatAnswer(cleanAnswer);
-        solutionCard.classList.remove('hidden');
-        setTimeout(()=> solutionCard.scrollIntoView({ behavior:'smooth', block:'start' }),300);
-      } catch(err) {
-        console.error(err);
-        showError(err.message);
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<span class="flex items-center space-x-2"><i data-feather="send" class="w-5 h-5"></i><span>Solve My Question</span></span>';
+    <script>
         feather.replace();
-      }
-    });
 
-    function formatAnswer(text) {
-      // Keep everything before "Step-by-step Explanation:" for main card
-      const [main] = text.split(/Step-by-step Explanation:/i);
-      let f = main
-        .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-        .replace(/\n\n/g,'</p><p>')
-        .replace(/\n/g,'<br>');
-      return '<p>'+f+'</p>';
-    }
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-    function extractSteps(text) {
-      const parts = text.split(/Step-by-step Explanation:/i);
-      if (parts.length<2) return '<p class="italic text-gray-600">No detailed steps available.</p>';
-      const lines = parts[1].split('\n');
-      const items = [];
-      for (let l of lines) {
-        const m = l.match(/^\s*(?:Step\s*)?(\d+)[\.:]\s*(.*)/i);
-        if (m) items.push(m[2].trim());
-      }
-      if (!items.length) return '<p class="italic text-gray-600">No detailed steps found.</p>';
-      return '<ol class="space-y-3">'+items.map(s=>`<li class="text-gray-700 leading-relaxed">${s}</li>`).join('')+'</ol>';
-    }
+        // Difficulty slider
+        const difficultySlider = document.getElementById('difficulty');
+        const difficultyText = document.getElementById('difficulty-text');
+        
+        const difficultyLabels = {
+            1: 'Easy',
+            2: 'Medium', 
+            3: 'Hard'
+        };
+        
+        difficultySlider.addEventListener('input', (e) => {
+            difficultyText.textContent = difficultyLabels[e.target.value];
+        });
 
-    stepsToggle.addEventListener('click', ()=> {
-      const hidden = stepsList.classList.toggle('hidden');
-      const icon = stepsToggle.querySelector('i');
-      const txt  = stepsToggle.querySelector('span');
-      if (!hidden) {
-        stepsList.innerHTML = extractSteps(fullSolutionText);
-        txt.textContent = 'Hide Detailed Steps';
-        icon.setAttribute('data-feather','eye-off');
-      } else {
-        txt.textContent = 'Show Detailed Steps';
-        icon.setAttribute('data-feather','list');
-      }
-      feather.replace();
-    });
+        // Global variable to store full solution text
+        let fullSolutionText = '';
 
-    function showError(msg) {
-      spinner.classList.add('hidden');
-      solutionText.innerHTML = '<p>'+msg+'</p>';
-      solutionText.className = 'text-red-600 leading-relaxed text-lg bg-red-50 p-6 rounded-lg border-l-4 border-red-500';
-      solutionCard.classList.remove('hidden');
-    }
+        // Form submission
+        const form = document.getElementById('question-form');
+        const responseArea = document.getElementById('response-area');
+        const spinner = document.getElementById('spinner');
+        const solutionCard = document.getElementById('solution-card');
+        const solutionText = document.getElementById('solution-text');
+        const stepsToggle = document.getElementById('toggle-steps');
+        const stepsList = document.getElementById('steps-list');
+        const submitBtn = document.getElementById('submit-btn');
 
-    document.getElementById('ask-another').addEventListener('click',()=>{
-      form.reset();
-      responseArea.classList.add('hidden');
-      stepsList.classList.add('hidden');
-      fullSolutionText='';
-      diffText.textContent='Medium';
-      document.getElementById('content').focus();
-      window.scrollTo({ top:0, behavior:'smooth' });
-    });
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const content = formData.get('content').trim();
+            const subject = formData.get('subject');
+            const difficulty = difficultyLabels[formData.get('difficulty')];
+            
+            if (!content) {
+                alert('Please enter your question before submitting.');
+                return;
+            }
 
-    document.getElementById('hint-btn').addEventListener('click',()=>{
-      alert('Hint system coming soon!');
-    });
-  </script>
+            // Show loading state
+            responseArea.classList.remove('hidden');
+            spinner.classList.remove('hidden');
+            solutionCard.classList.add('hidden');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="flex items-center justify-center space-x-2"><i data-feather="loader" class="w-5 h-5 animate-spin"></i><span>Processing...</span></span>';
+            feather.replace();
+
+            try {
+                // Real API integration
+                const payload = {
+                    inputs: content,
+                    subject: subject,
+                    difficulty: difficulty
+                };
+                
+                const apiRes = await fetch('/api/solve', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!apiRes.ok) {
+                    const errText = await apiRes.text();
+                    throw new Error(errText || 'API error');
+                }
+                
+                // ✅ FIXED: Parse JSON response instead of reading as text
+                const data = await apiRes.json();
+                
+                // ✅ FIXED: Extract the clean answer from the response
+                const cleanAnswer = data.answer || data.result || 'No response received';
+                
+                // Store full solution for steps extraction
+                fullSolutionText = cleanAnswer;
+                
+                // Hide spinner and show solution
+                spinner.classList.add('hidden');
+                
+                // ✅ FIXED: Format the answer nicely before displaying
+                solutionText.innerHTML = formatAnswer(cleanAnswer);
+                solutionText.className = 'text-gray-700 leading-relaxed text-lg bg-gray-50 p-6 rounded-lg border-l-4 border-teal-500';
+                
+                solutionCard.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    solutionCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 300);
+
+            } catch (error) {
+                console.error(error);
+                showError(error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<span class="flex items-center justify-center space-x-2"><i data-feather="send" class="w-5 h-5"></i><span>Solve My Question</span></span>';
+                feather.replace();
+            }
+        });
+
+        // ✅ NEW: Format answer function
+        function formatAnswer(text) {
+            // Convert markdown-style formatting to HTML
+            let formatted = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')  // Bold text
+                .replace(/\n\n/g, '</p><p>')  // Paragraphs
+                .replace(/\n/g, '<br>')  // Line breaks
+                .replace(/``````/gs, '<pre class="bg-gray-800 text-white p-4 rounded mt-2 overflow-x-auto"><code>$1</code></pre>');  // Code blocks
+            
+            return '<p>' + formatted + '</p>';
+        }
+
+        function showError(message) {
+            spinner.classList.add('hidden');
+            solutionText.innerHTML = '<p>' + message + '</p>';
+            solutionText.className = 'text-red-600 leading-relaxed text-lg bg-red-50 p-6 rounded-lg border-l-4 border-red-500';
+            solutionCard.classList.remove('hidden');
+        }
+
+        // ✅ FIXED: Steps toggle functionality
+        stepsToggle.addEventListener('click', () => {
+            const isHidden = stepsList.classList.contains('hidden');
+            
+            if (isHidden) {
+                // Extract and display steps
+                const steps = extractSteps(fullSolutionText);
+                stepsList.innerHTML = steps;
+                stepsList.classList.remove('hidden');
+                
+                const icon = stepsToggle.querySelector('i');
+                const text = stepsToggle.querySelector('span');
+                text.textContent = 'Hide Detailed Steps';
+                icon.setAttribute('data-feather', 'eye-off');
+            } else {
+                stepsList.classList.add('hidden');
+                
+                const icon = stepsToggle.querySelector('i');
+                const text = stepsToggle.querySelector('span');
+                text.textContent = 'Show Detailed Steps';
+                icon.setAttribute('data-feather', 'list');
+            }
+            
+            feather.replace();
+        });
+
+        // ✅ NEW: Extract steps from solution text
+        function extractSteps(text) {
+            const lines = text.split('\n');
+            let stepsHTML = '';
+            let stepNumber = 0;
+            
+            for (let line of lines) {
+                const trimmedLine = line.trim();
+                
+                // Look for numbered steps or "Step" keyword
+                if (trimmedLine.match(/^Step\s+\d+/i) || trimmedLine.match(/^\d+\./)) {
+                    stepNumber++;
+                    const cleanLine = trimmedLine.replace(/^(Step\s+\d+[:\-\.]?\s*|\d+\.\s*)/i, '');
+                    stepsHTML += `<li class="flex items-start space-x-3">
+                        <span class="flex-shrink-0 w-8 h-8 bg-teal-500 text-white rounded-full flex items-center justify-center font-bold text-sm">${stepNumber}</span>
+                        <span class="text-gray-700 pt-1">${cleanLine}</span>
+                    </li>`;
+                } else if (trimmedLine && stepNumber > 0 && !trimmedLine.match(/^(answer|solution|final)/i)) {
+                    // Add continuation of previous step
+                    stepsHTML += `<li class="flex items-start space-x-3 ml-11">
+                        <span class="text-gray-600 text-sm">${trimmedLine}</span>
+                    </li>`;
+                }
+            }
+            
+            if (stepsHTML === '') {
+                return '<p class="text-gray-600 italic">No detailed steps found. The AI provided a direct answer.</p>';
+            }
+            
+            return '<ol class="space-y-4">' + stepsHTML + '</ol>';
+        }
+
+        // Ask another question
+        document.getElementById('ask-another').addEventListener('click', () => {
+            form.reset();
+            responseArea.classList.add('hidden');
+            stepsList.classList.add('hidden');
+            difficultyText.textContent = 'Medium';
+            fullSolutionText = '';
+            document.getElementById('content').focus();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Hint button functionality
+        document.getElementById('hint-btn').addEventListener('click', () => {
+            alert('Hint system coming soon! This will provide progressive hints to guide you through the solution.');
+        });
+    </script>
 </body>
 </html>
