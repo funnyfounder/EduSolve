@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "app.vercel.edusolve_liard.twa",
+        "sha256_cert_fingerprints": ["0C:1A:EC:18:EC:35:91:4E:A1:14:77:F9:C6:5F:97:B5:BD:F1:8E:05:1E:0F:27:5E:97:2E:14:51:79:7B:F4:14"]
+      }
+    }]
